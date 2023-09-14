@@ -1,0 +1,14 @@
+[project]
+name = "rotki-workshop"
+authors = [
+    {name = "rotki Gmbh", email = "info@rotki.com"},
+]
+description = "Code for the rotki workshop"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = ["License :: OSI Approved :: MIT License"]
+version = "2023.09.15"
+
+dependencies = [
+    "rotkehlchen@git+https://github.com/yabirgb/rotki.git@rotki-workshop"
+]
