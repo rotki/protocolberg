@@ -6,5 +6,5 @@ COPY pyproject.toml ./
 RUN pip install --no-cache-dir .
 
 COPY . .
-
+ARG DOCKER=1
 CMD [ "python", "./src/etherscan.py" ]
