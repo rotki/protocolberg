@@ -42,7 +42,7 @@ assert password is not None
 
 
 # Obtain users database
-if 'PROD' in os.environ:
+if 'DOCKER' not in os.environ:
     data_dir = Path('./data')
 else:
     data_dir = Path('/usr/src/app/data')
