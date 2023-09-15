@@ -1,10 +1,10 @@
-from rotkehlchen.chain.evm.types import string_to_evm_address
-
 from rotki_conf import msg_aggregator
+
+from rotkehlchen.chain.evm.types import string_to_evm_address
 from lib.trueblocks import Trueblocks
 
 trueblocks = Trueblocks(
-    endpoint='http://localhost:8080',
+    endpoint='https://clean-vertically-oriole.ngrok-free.app/',
     msg_aggregator=msg_aggregator,
 )
 

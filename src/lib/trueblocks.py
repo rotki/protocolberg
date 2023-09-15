@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING, Any, Dict, List, Optional
 import requests
 from rotkehlchen.logging import RotkehlchenLogsAdapter
 
-from rotkehlchen.types import EVMTxHash, Timestamp, ChecksumEvmAddress
+from rotkehlchen.types import Timestamp, ChecksumEvmAddress
 from rotkehlchen.utils.serialization import jsonloads_dict
 
 
@@ -21,7 +21,6 @@ class Trueblocks:
 
     def __init__(self, endpoint: str, msg_aggregator: 'MessagesAggregator') -> None:
         self.endpoint = endpoint
-        self.session = requests.session()
         self.msg_aggregator = msg_aggregator
 
     def get_transactions_by_hash(self, tx_hashes: List[str]) -> List[Dict[str, Any]]:
@@ -70,9 +69,10 @@ class Trueblocks:
             params: Optional[Dict[str, Any]] = None,
     ) -> Any:
         try:
-            response = self.session.get(f'{self.endpoint}/{method}', params=params)
+            response = requests.get(f'{self.endpoint}/{method}', params=params, headers={'User-Agent': 'rotki'})
         except requests.exceptions.RequestException as e:
             self.msg_aggregator.add_error(f'Failed to query trueblocks node due to {e}')
+            raise e
 
         if response.status_code != 200:
             raise RemoteError(

@@ -7,4 +7,4 @@ RUN pip install --no-cache-dir .
 
 COPY . .
 ARG DOCKER=1
-CMD [ "python", "./src/etherscan.py" ]
+CMD [ "python", "./src/trueblocks.py" ]
